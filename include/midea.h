@@ -5,28 +5,24 @@
 #include <string.h>
 #include "soc/rmt_struct.h"
 
-
 // values definitions
 #define MIDEA_TX_BUFFER_SIZE 50
 #define MIDEA_PAYLOAD_LENGTH 3
 #define MIDEA_CARRIER_FREQUENCY 38000
 #define MIDEA_T_PERIOD_US 505
 
-const rmt_item32_t MIDEA_BIT_0 = {MIDEA_T_PERIOD_US, 0, MIDEA_T_PERIOD_US, 1};
-const rmt_item32_t MIDEA_BIT_1 = {MIDEA_T_PERIOD_US, 0, 3 * MIDEA_T_PERIOD_US,
-                                  1};
+const rmt_item32_t MIDEA_BIT_0 = {{{MIDEA_T_PERIOD_US, 0, MIDEA_T_PERIOD_US, 1}}};
+const rmt_item32_t MIDEA_BIT_1 = {{{MIDEA_T_PERIOD_US, 0, 3 * MIDEA_T_PERIOD_US, 1}}};
 
-const rmt_item32_t MIDEA_START_SEQUENCE = {8 * MIDEA_T_PERIOD_US, 0,
-                                           8 * MIDEA_T_PERIOD_US, 1};
+const rmt_item32_t MIDEA_START_SEQUENCE = {{{8 * MIDEA_T_PERIOD_US, 0, 8 * MIDEA_T_PERIOD_US, 1}}};
 
-const rmt_item32_t MIDEA_STOP_SEQUENCE = {1 * MIDEA_T_PERIOD_US, 0,
-                                          10 * MIDEA_T_PERIOD_US, 1};
+const rmt_item32_t MIDEA_STOP_SEQUENCE = {{{1 * MIDEA_T_PERIOD_US, 0, 10 * MIDEA_T_PERIOD_US, 1}}};
 
 typedef rmt_item32_t midea_tx_buffer_t[MIDEA_TX_BUFFER_SIZE];
 
-
 // types definitions
-typedef enum {
+typedef enum
+{
   T17C = 0b0000,
   T18C = 0b0001,
   T19C = 0b0011,
@@ -44,7 +40,8 @@ typedef enum {
   T_OFF = 0b1110
 } MideaTemperature;
 
-typedef enum {
+typedef enum
+{
   FAN_AUTO = 0b1011,
   FAN_LOW = 0b1001,
   FAN_MED = 0b0101,
@@ -52,16 +49,22 @@ typedef enum {
   FAN_OFF = 0b0001
 } MideaFan;
 
-typedef enum { STATE_ON = 0b1111, STATE_OFF = 0b1011 } MideaState;
+typedef enum
+{
+  STATE_ON = 0b1111,
+  STATE_OFF = 0b1011
+} MideaState;
 
-typedef enum {
+typedef enum
+{
   COMMAND_COOL = 0b0000,
   COMMAND_HEAT = 0b1100,
   COMMAND_AUTO = 0b1000,
   COMMAND_FAN = 0b0100
 } MideaCommand;
 
-typedef struct {
+typedef struct
+{
   uint8_t protocol_id;
   uint8_t state : 4;
   uint8_t fan : 4;
@@ -69,16 +72,15 @@ typedef struct {
   uint8_t temperature : 4;
 } MideaFrameData;
 
-typedef union {
+typedef union
+{
   MideaFrameData data;
   uint8_t raw[sizeof(MideaFrameData)];
 } MideaFrame;
-
 
 // functions declarations
 void initialize_midea_tx_buffer(midea_tx_buffer_t *buffer);
 void midea_byte2rmt(const uint8_t byte, rmt_item32_t *buffer);
 void midea_encode(const uint8_t *data, midea_tx_buffer_t *buffer);
-
 
 #endif
