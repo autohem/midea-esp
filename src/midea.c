@@ -1,5 +1,4 @@
-
-#include <midea.h>
+#include "midea.h"
 
 
 
@@ -27,34 +26,3 @@ void midea_encode(const uint8_t *data, midea_tx_buffer_t *buffer) {
     index += 8;
   }
 }
-
-// #include <stdio.h>
-
-// int test_midea_byte2rmt(void);
-// int test_midea_union_endianess_swap(void);
-// int test_midea_encode(void);
-
-// int main() {
-
-//   if (test_midea_byte2rmt() == 0) {
-//     printf("test_midea_byte2rmt PASSED!\n");
-//   } else {
-//     printf("test_midea_byte2rmt FAILED!\n");
-//   }
-
-//   if (test_midea_union_endianess_swap() == 0) {
-//     printf("test_midea_union_endianess_swap PASSED!\n");
-//   } else {
-//     printf("test_midea_union_endianess_swap FAILED!\n");
-//   }
-
-//   if (test_midea_encode() == 0) {
-//     printf("test_midea_encode PASSED!\n");
-//   } else {
-//     printf("test_midea_encode FAILED!\n");
-//   }
-// }
-
-// int test_midea_byte2rmt(void) { return -1; }
-// int test_midea_union_endianess_swap(void) { return -1; }
-// int test_midea_encode(void) { return -1; }

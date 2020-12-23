@@ -3,14 +3,7 @@
 
 #include <stdint.h>
 #include <string.h>
-
-// esp32 rmt_item32_t mock
-typedef struct {
-  uint16_t period0 : 15;
-  uint16_t level0 : 1;
-  uint16_t period1 : 15;
-  uint16_t level1 : 1;
-} rmt_item32_t;
+#include "soc/rmt_struct.h"
 
 
 // values definitions
