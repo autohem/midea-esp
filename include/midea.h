@@ -9,20 +9,22 @@
 extern "C" {
 #endif
 
+typedef enum {
+  midea_tx_buffer_size = 50,
+  midea_payload_lenght = 3,
+  midea_carrier_frequency =38000,
+  midea_t_period_us = 505
+}MideaSettings;
 // values definitions
-#define MIDEA_TX_BUFFER_SIZE 50
-#define MIDEA_PAYLOAD_LENGTH 3
-#define MIDEA_CARRIER_FREQUENCY 38000
-#define MIDEA_T_PERIOD_US 505
 
-const rmt_item32_t MIDEA_BIT_0 = {{{MIDEA_T_PERIOD_US, 0, MIDEA_T_PERIOD_US, 1}}};
-const rmt_item32_t MIDEA_BIT_1 = {{{MIDEA_T_PERIOD_US, 0, 3 * MIDEA_T_PERIOD_US, 1}}};
+const rmt_item32_t MIDEA_BIT_0 = {{{midea_t_period_us, 0, midea_t_period_us, 1}}};
+const rmt_item32_t MIDEA_BIT_1 = {{{midea_t_period_us, 0, 3 * midea_t_period_us, 1}}};
 
-const rmt_item32_t MIDEA_START_SEQUENCE = {{{8 * MIDEA_T_PERIOD_US, 0, 8 * MIDEA_T_PERIOD_US, 1}}};
+const rmt_item32_t MIDEA_START_SEQUENCE = {{{8 * midea_t_period_us, 0, 8 * midea_t_period_us, 1}}};
 
-const rmt_item32_t MIDEA_STOP_SEQUENCE = {{{1 * MIDEA_T_PERIOD_US, 0, 10 * MIDEA_T_PERIOD_US, 1}}};
+const rmt_item32_t MIDEA_STOP_SEQUENCE = {{{1 * midea_t_period_us, 0, 10 * midea_t_period_us, 1}}};
 
-typedef rmt_item32_t midea_tx_buffer_t[MIDEA_TX_BUFFER_SIZE];
+typedef rmt_item32_t midea_tx_buffer_t[midea_tx_buffer_size];
 
 // types definitions
 typedef enum
