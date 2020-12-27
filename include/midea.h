@@ -5,6 +5,10 @@
 #include <string.h>
 #include "soc/rmt_struct.h"
 
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+extern "C" {
+#endif
+
 // values definitions
 #define MIDEA_TX_BUFFER_SIZE 50
 #define MIDEA_PAYLOAD_LENGTH 3
@@ -82,5 +86,9 @@ typedef union
 void initialize_midea_tx_buffer(midea_tx_buffer_t *buffer);
 void midea_byte2rmt(const uint8_t byte, rmt_item32_t *buffer);
 void midea_encode(const uint8_t *data, midea_tx_buffer_t *buffer);
+
+#ifdef __cplusplus /* If this is a C++ compiler, end C linkage */
+}
+#endif
 
 #endif
