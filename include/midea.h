@@ -17,12 +17,12 @@ typedef enum {
 }MideaSettings;
 // values definitions
 
-const rmt_item32_t MIDEA_BIT_0 = {{{midea_t_period_us, 0, midea_t_period_us, 1}}};
-const rmt_item32_t MIDEA_BIT_1 = {{{midea_t_period_us, 0, 3 * midea_t_period_us, 1}}};
+static const rmt_item32_t MIDEA_BIT_0 = {{{midea_t_period_us, 0, midea_t_period_us, 1}}};
+static const rmt_item32_t MIDEA_BIT_1 = {{{midea_t_period_us, 0, 3 * midea_t_period_us, 1}}};
 
-const rmt_item32_t MIDEA_START_SEQUENCE = {{{8 * midea_t_period_us, 0, 8 * midea_t_period_us, 1}}};
+static const rmt_item32_t MIDEA_START_SEQUENCE = {{{8 * midea_t_period_us, 0, 8 * midea_t_period_us, 1}}};
 
-const rmt_item32_t MIDEA_STOP_SEQUENCE = {{{1 * midea_t_period_us, 0, 10 * midea_t_period_us, 1}}};
+static const rmt_item32_t MIDEA_STOP_SEQUENCE = {{{1 * midea_t_period_us, 0, 10 * midea_t_period_us, 1}}};
 
 typedef rmt_item32_t midea_tx_buffer_t[midea_tx_buffer_size];
 
